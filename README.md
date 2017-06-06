@@ -48,7 +48,6 @@ You can change theme by
 
 ![theme-blue](https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/rec-demo.gif)
 ![theme-green](https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/theme-green.png)
-
 # Browser support
 
 Modern browsers and IE 10+.
