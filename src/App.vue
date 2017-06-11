@@ -8,6 +8,7 @@
 </template>
 
 <script>
+//add
 export default {
 	name: 'app',
 	components: {
