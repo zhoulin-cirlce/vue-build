@@ -4,6 +4,9 @@
 			<el-input v-model="form.name"></el-input>
 			 <mt-button>按钮</mt-button>
 			 <mt-switch v-model="form.region"></mt-switch>
+			 <div class="aa">
+			<div class="bb"></div>
+		</div>
 		</el-form-item>
 		<el-form-item label="活动区域">
 			<el-select v-model="form.region" placeholder="请选择活动区域">
@@ -45,6 +48,7 @@
 			<el-button @click.native.prevent>取消</el-button>
 		</el-form-item>
 	</el-form>
+
 </template>
 
 <script>
@@ -71,3 +75,6 @@
 	}
 
 </script>
+<style scoped lang="scss">
+	@import '~scss_page';
+</style>

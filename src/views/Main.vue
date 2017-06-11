@@ -1,6 +1,9 @@
 <template>
 	<section>
-		main
+		main123
+		<div class="aa">
+			<div class="bb"></div>
+		</div>
 	</section>
 </template>
 
@@ -10,6 +13,6 @@
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+	@import '~scss_page';
 </style>
