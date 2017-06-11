@@ -11,6 +11,7 @@ import Vuex from 'vuex'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
+// import components from './components'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
 
