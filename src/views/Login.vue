@@ -12,11 +12,13 @@
       <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
       <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
     </el-form-item>
+    <hello></hello>
   </el-form>
 </template>
 
 <script>
   import { requestLogin } from '../api/api';
+  import Hello from '../components/Hello.vue';
   //import NProgress from 'nprogress'
   export default {
     data() {
@@ -72,6 +74,9 @@
           }
         });
       }
+    },
+    components:{
+      Hello
     }
   }
 
