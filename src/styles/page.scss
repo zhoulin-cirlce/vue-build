@@ -1,4 +1,5 @@
 $color-primary: #20a0ff;//#18c79c
+$theme-color:#fa6666;  	//主题颜色
 .aa{
 	width:200px;
 	height:200px;
@@ -8,4 +9,9 @@ $color-primary: #20a0ff;//#18c79c
 		height:100px;
 		background:$color-primary;
 	}
+}
+//宽高
+@mixin wh($width, $height){
+	width: $width;
+	height: $height;
 }
