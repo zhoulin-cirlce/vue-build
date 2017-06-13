@@ -36,7 +36,7 @@
         <mt-button size="large" type="primary" @click.native.prevent="loginSubmit">登录</mt-button>
       </div>
     </form>
-    <hello></hello>
+    <Hello></Hello>
     <div class="quick-login" style="display:">
             <h4 class="txt-otherLogin">其他登录方式</h4>
             <a href="javascript:;" class=" quick-qq"><i class="icon icon-qq"></i><br><span class="txt-qq">QQ</span></a>
@@ -49,7 +49,7 @@
 <script>
   import { requestLogin } from '../api/api';
   import { MessageBox } from 'mint-ui';
-  import Hello from '../components/Hello.vue'
+  import Hello from 'components/Hello.vue'
   //import NProgress from 'nprogress'
   export default {
     data() {

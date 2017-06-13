@@ -16,7 +16,9 @@ import routes from './routes'
 import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+// import Hello from 'components/Hello'
 
+// Vue.component('Hello',Hello)
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
