@@ -26,7 +26,7 @@ module.exports = {
             'src': path.resolve(__dirname, '../src'),
             'scss_vars': '@/styles/vars.scss',
             'scss_page': '@/styles/page.scss',
-            // 'assets': path.resolve(__dirname, '../src/assets'),
+            'assets': path.resolve(__dirname, '../src/assets'),
             'components': path.resolve(__dirname, '../src/components'),
             // 'views': path.resolve(__dirname, '../src/views'),
             // 'styles': path.resolve(__dirname, '../src/styles'),

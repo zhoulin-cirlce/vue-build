@@ -31,7 +31,10 @@ body {
 	font-size: 14px;
 	-webkit-font-smoothing: antialiased;
 }
-
+a{
+	display:inline-block;
+	font-size:0.7rem;
+}
 #app {
 	position: absolute;
 	top: 0px;
