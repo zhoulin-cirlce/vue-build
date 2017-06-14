@@ -1,16 +1,10 @@
 <template>
-	<section>
-		main123
-		<div class="aa">
-			<div class="bb"></div>
-		</div>
-	</section>
+	
 </template>
 
 <script>
-	export default {
-	}
-
+	
+	export default {}
 </script>
 
 <style scoped lang="scss">

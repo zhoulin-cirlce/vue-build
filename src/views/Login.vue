@@ -61,6 +61,7 @@
           checkPass: ''
         },
         rules2: {
+
           account: [
             { required: true, message: '请输入账号', trigger: 'blur' },
             //{ validator: validaePass }
@@ -88,7 +89,7 @@
                 MessageBox.alert(msg,'提示',);
               } else {
                  sessionStorage.setItem('user', JSON.stringify(user));
-                 this.$router.push({ path: '/Form' });
+                 this.$router.push({ path: '/main' });
               }
             });
           } else {
@@ -124,12 +125,12 @@
         @include wh(19%,19%)
       }
       .tit{
-        font-size:14px;
+        font-size:0.7rem;
         color:rgb(237,137,71)
       }
       .tit-tip{
         color:#bfbfbf;
-        font-size:12px
+        font-size:0.6rem
       }
     }
     .quick-login {

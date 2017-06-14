@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-
+import 'src/common/js/rem.js'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 //import './assets/theme/theme-green/index.css'
