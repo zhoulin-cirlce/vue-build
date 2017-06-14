@@ -4,8 +4,6 @@
 			<el-input v-model="form.name"></el-input>
 			 <mt-button>按钮</mt-button>
 			 <mt-switch v-model="form.region"></mt-switch>
-			 <div class="aa">
-			<div class="bb"></div>
 		</div>
 		</el-form-item>
 		<el-form-item label="活动区域">
@@ -47,11 +45,13 @@
 			<el-button type="primary">立即创建</el-button>
 			<el-button @click.native.prevent>取消</el-button>
 		</el-form-item>
+		<Hello></Hello>
 	</el-form>
 
 </template>
 
 <script>
+import Hello from 'components/Hello.vue'
 	export default {
 		data() {
 			return {
@@ -71,6 +71,9 @@
 			onSubmit() {
 				console.log('submit!');
 			}
+		},
+		components:{
+			Hello
 		}
 	}
 
