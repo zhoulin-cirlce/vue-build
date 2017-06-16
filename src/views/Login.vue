@@ -57,8 +57,8 @@
         value:[],
         logining: false,
         ruleForm2: {
-          account: '',
-          checkPass: ''
+          account: 'admin',
+          checkPass: '123456'
         },
         rules2: {
 
@@ -81,7 +81,7 @@
             this.logining = true;
             var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
-              console.log(data)
+             // console.log(data)
               this.logining = false;
               let { msg, code, user } = data;
               if (code !== 200) {
@@ -134,7 +134,7 @@
       }
     }
     .quick-login {
-      margin-top:105px;
+      margin-top:3rem;
       height: 55px;
       position: relative;
       padding: 24.5px 0 0 0;
@@ -142,7 +142,7 @@
       text-align:center;
     h4 {
       position: absolute;
-      top: -29px;
+      top: -11px;
       left: 50%;
       background-color: white;
       padding: 0 10px;

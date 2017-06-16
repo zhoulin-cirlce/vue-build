@@ -111,7 +111,7 @@ export default {
         }, 500);
       });
     });
-
+    
     //批量删除用户
     mock.onGet('/user/batchremove').reply(config => {
       let {

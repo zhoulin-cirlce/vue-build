@@ -71,6 +71,11 @@
 			onSubmit() {
 				console.log('submit!');
 			}
+			
+		},
+		created(){
+			let params = this.$route.params;
+			console.log(params)
 		}
 	}
 

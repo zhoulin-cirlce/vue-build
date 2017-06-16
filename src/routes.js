@@ -17,7 +17,9 @@ let routes = [
         name: '',
         hidden: true
     },
-    //{ path: '/main', component: Main },
+    {   path: '/form/:status', 
+        name:'form',
+        component: Form },
     {
         path: '/',
         component: Home,
@@ -25,7 +27,6 @@ let routes = [
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/form', component: Form, name: 'Form' },
         ]
     },
     {

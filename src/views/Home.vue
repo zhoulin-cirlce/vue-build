@@ -1,64 +1,145 @@
 <template>
 	<!--<el-row class="container">
-				<el-col :span="24" class="header">
-					
-					<el-col :span="24" class="userinfo">
-						<el-dropdown trigger="hover">
-							<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
-							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
-							</el-dropdown-menu>
-						</el-dropdown>
-					</el-col>
-				</el-col>
-				<el-col :span="24" class="main">		
-					<section class="content-container">
-						<div class="grid-content bg-purple-light">
-							<el-col :span="24" class="content-wrapper">
-								<transition name="fade" mode="out-in">
-									<router-view></router-view>
-								</transition>
-							</el-col>
-						</div>
-					</section>
-				</el-col>
-			</el-row>-->
-	<section>
-		<div class="sw-card" id="card">
-			<mt-swipe :auto="0">
+								<el-col :span="24" class="header">
+									
+									<el-col :span="24" class="userinfo">
+										<el-dropdown trigger="hover">
+											<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
+											<el-dropdown-menu slot="dropdown">
+												<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+											</el-dropdown-menu>
+										</el-dropdown>
+									</el-col>
+								</el-col>
+								<el-col :span="24" class="main">		
+									<section class="content-container">
+										<div class="grid-content bg-purple-light">
+											<el-col :span="24" class="content-wrapper">
+												<transition name="fade" mode="out-in">
+													<router-view></router-view>
+												</transition>
+											</el-col>
+										</div>
+									</section>
+								</el-col>
+							</el-row>-->
+	<div>
+		<headerTop :head-title="title" :go-back="true"></headerTop>
+		<div class="top">
+			<bank-card :integral="integral"></bank-card>
+		</div>
+		<div class="sw-card clearfix" id="card">
+			<mt-swipe :auto="4000" :show-indicators="false">
 				<mt-swipe-item v-for="(item , index) in cardList" :key="index">
-					<a v-for="card in item" :key="card.id">
-						{{card.title}}
-					</a>
+					<div v-for="card in item" :key="card.id" class="link_to">
+						<router-link :to="{}">
+							<img :src="baseUrl+card.image_url" alt="">
+							<p>{{card.title}}</p>
+						</router-link>
+					</div>
 				</mt-swipe-item>
 	
 			</mt-swipe>
 		</div>
-	</section>
+		<task-list :task-title="taskTitle" :task-data="taskData"></task-list>
+	</div>
 </template>
 
 <script>
-	import {Swipe,SwipeItem} from 'mint-ui';
+	import {
+		Swipe,
+		SwipeItem
+	} from 'mint-ui';
+	import headerTop from 'components/headTop'
+	import taskList from 'components/renpinCard/TaskList'
+	import BankCard from 'components/renpinCard/BankCard'
 	export default {
 		data() {
 			return {
-				// sysName:'VUEADMIN',
-				// collapsed:false,
-				// sysUserName: '',
-				// sysUserAvatar: '',
-				// form: {
-				// 	name: '',
-				// 	region: '',
-				// 	date1: '',
-				// 	date2: '',
-				// 	delivery: false,
-				// 	type: [],
-				// 	resource: '',
-				// 	desc: ''
-				//}
+				taskTitle: '每月任务，快速加积分', //人品卡 列表头部
+				taskData: [{
+						iconClass: "icon-gift",
+						jifen: "+30积分",
+						contantText: "首次购买定期500元",
+						status: '500'
+					},
+					{
+						iconClass: "icon-delicious",
+						jifen: "+10积分",
+						contantText: "人品货代成功完成一笔接待",
+						status: '未完成'
+					},
+					{
+						iconClass: "icon-gift",
+						jifen: "+30积分",
+						contantText: "首次购买定期500元",
+						status: '已成功购买0/500'
+					},
+					{
+						iconClass: "icon-delicious",
+						jifen: "+10积分",
+						contantText: "人品货代成功完成一笔接待",
+						status: '未完成'
+					},
+					{
+						iconClass: "icon-gift",
+						jifen: "+30积分",
+						contantText: "首次购买定期500元",
+						status: '已成功购买0/500'
+					},
+					{
+						iconClass: "icon-delicious",
+						jifen: "+10积分",
+						contantText: "人品货代成功完成一笔接待",
+						status: '未完成'
+					},
+					{
+						iconClass: "icon-pinterest",
+						jifen: "+100积分",
+						contantText: "成功邀请好友投资并获得佣金",
+						status: '未完成'
+					}
+				],
+				title: '人品卡',
+				baseUrl: 'https://fuss10.elemecdn.com',
 				cardList: [{
 						id: 15,
+						title: "每月翻牌",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "霸气十足",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "信用卡还款",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "人品专家",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "给你花",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "人品贷",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
 						title: "美食",
+						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+					},
+					{
+						id: 15,
+						title: "办信用卡",
 						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
 					},
 					{
@@ -76,55 +157,11 @@
 						title: "美食",
 						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
 					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-				]
+				],
+				integral: null //用户积分
 			}
 		},
 		methods: {
-			onSubmit() {
-				console.log('submit!');
-			},
-			handleopen() {
-				//console.log('handleopen');
-			},
-			handleclose() {
-				//console.log('handleclose');
-			},
-			handleselect: function(a, b) {},
 			//退出登录
 			logout: function() {
 				var _this = this;
@@ -136,23 +173,17 @@
 				}).catch(() => {
 	
 				});
-	
-	
 			},
-			//折叠导航栏
-			collapse: function() {
-				this.collapsed = !this.collapsed;
-			},
-			showMenu(i, status) {
-				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-' + i)[0].style.display = status ? 'block' : 'none';
-			}
 		},
 		mounted() {
-			var user = sessionStorage.getItem('user');
+			//获取用户信息
+			let user = sessionStorage.getItem('user');
+			console.log(user)
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
+				this.integral = user.integral || '';
 			};
 			//取得cardListlen长度
 			let cardListlen = this.cardList.length;
@@ -161,18 +192,45 @@
 			//处理后的数据 
 			let cardarr = [];
 			for (let i = 0, j = 0; i < cardListlen; i += 8, j++) {
-				cardarr[j] = newarr.splice(0,8);
+				cardarr[j] = newarr.splice(0, 8);
 			}
 			this.cardList = cardarr
+		},
+		components: {
+			headerTop,
+			taskList,
+			BankCard
 		}
 	}
 </script>
 
 <style scoped lang="scss">
-	@import '~scss_vars';
-	.sw-card {
-		height: 220px
+	@import '~scss_page';
+	.top {
+		margin-top: 1.95rem;
 	}
+	
+	.sw-card {
+		height: 7.3rem;
+	}
+	
+	.link_to {
+		-webkit-tap-highlight-color: transparent;
+		-webkit-font-smoothing: antialiased;
+		width: 25%;
+		float: left;
+		text-align: center;
+		img {
+			margin-top: 0.3rem;
+			margin-bottom: 0.3rem;
+			@include wh(1.8rem, 1.8rem);
+		}
+		p {
+			text-align: center;
+			@include sc(0.6rem, #666);
+		}
+	}
+	
 	.container {
 		position: absolute;
 		top: 0px;
