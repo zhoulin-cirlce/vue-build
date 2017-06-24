@@ -26,8 +26,9 @@
 	<div>
 		<headerTop :head-title="title" :go-back="true"></headerTop>
 		<div class="top">
-			<bank-card :integral="integral"></bank-card>
+			<bank-card :integral="integral" @childsay="listenTohome"></bank-card>
 		</div>
+		<div class="cc">{{childsay}}</div>
 		<div class="sw-card clearfix" id="card">
 			<mt-swipe :auto="4000" :show-indicators="false">
 				<mt-swipe-item v-for="(item , index) in cardList" :key="index">
@@ -158,7 +159,8 @@
 						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
 					},
 				],
-				integral: null //用户积分
+				integral: null ,//用户积分,
+				childsay:''
 			}
 		},
 		methods: {
@@ -174,6 +176,11 @@
 	
 				});
 			},
+			//获取子组件BankCard 传来的值
+			listenTohome:function(data){
+				this.childsay = data;
+				console.log(data)
+			}
 		},
 		mounted() {
 			//获取用户信息

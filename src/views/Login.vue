@@ -48,6 +48,7 @@
 
 <script>
   import { requestLogin } from '../api/api';
+  import { getUserList } from '../api/api';
   import { MessageBox } from 'mint-ui';
   import Hello from 'components/Hello.vue'
   //import NProgress from 'nprogress'
@@ -89,7 +90,7 @@
                 MessageBox.alert(msg,'提示',);
               } else {
                  sessionStorage.setItem('user', JSON.stringify(user));
-                 this.$router.push({ path: '/main' });
+                 this.$router.push({ path: '/Home' });
               }
             });
           } else {
@@ -100,6 +101,12 @@
     },
     components:{
       Hello
+    },
+    created(){
+      var Params = {};
+      getUserList(Params).then(data =>{
+        console.log(data)
+      })
     }
   }
 

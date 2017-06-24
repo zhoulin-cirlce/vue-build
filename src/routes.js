@@ -1,11 +1,10 @@
-import Login from './views/Login.vue'
-import NotFound from './views/404.vue'
-import Home from './views/Home.vue'
-import Main from './views/Main.vue'
-import Form from './views/nav1/Form.vue'
+//webpack按需加载组件 webpack必须2.0以上
 
-let routes = [
-    {
+const NotFound = r => require.ensure([], () => r(require('./views/404')), ' recommend')
+const Form = r => require.ensure([], () => r(require('./views/nav1/Form')), ' recommend')
+const Home = r => require.ensure([], () => r(require('./views/Home')), ' recommend')
+const Login = r => require.ensure([], () => r(require('./views/Login')), ' recommend')
+let routes = [{
         path: '/login',
         component: Login,
         name: '',
@@ -17,22 +16,23 @@ let routes = [
         name: '',
         hidden: true
     },
-    {   path: '/form/:status', 
-        name:'form',
-        component: Form },
     {
-        path: '/',
-        component: Home,
-        name: '导航一',
-        iconCls: 'el-icon-message',//图标样式class
-        children: [
-            { path: '/main', component: Main, name: '主页', hidden: true },
-        ]
+        path: '/form/:status',
+        name: 'form',
+        component: Form
     },
+    {
+        path: '/Home',
+        component: Home,
+        name: 'Home',
+    },
+   
     {
         path: '*',
         hidden: true,
-        redirect: { path: '/404' }
+        redirect: {
+            path: '/404'
+        }
     }
 ];
 

@@ -2,6 +2,8 @@
     <div class="task">
         <div style="height:8px;background:RGBA(228,228,228,0.4)"></div>
         <div class="task_title">{{taskTitle}}</div>
+        <!--<div @inc="inc(incfuc)">{{c}}</div>-->
+        {{c}}
         <div class="task_cont">
             <div class="task_list clearfix" v-for="item in taskData">
                 <router-link :to="{ name: 'form', params: {status:item.status}}">
@@ -18,13 +20,26 @@
 </template>
 
 <script>
+import bus from '../../bus.js'
     export default {
         data() {
             return {
-    
+                c:''
             }
         },
-        props: ['taskTitle', 'taskData']
+        props: ['taskTitle', 'taskData'],
+        created:function(){
+             bus.$on('inc',  (num) =>
+                this.c = num
+            );
+            
+            console.log(this.$parent.$data)
+        },
+        methods:{
+            // incfuc:function(msg){
+            //     this.c = msg
+            // }
+        }
     }
 </script>
 

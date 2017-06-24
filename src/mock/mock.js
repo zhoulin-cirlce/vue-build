@@ -1,8 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {
-   LoginUsers,
-   Users
+  LoginUsers,
+  Users
 } from './data/user';
 let _Users = Users;
 
@@ -111,7 +111,7 @@ export default {
         }, 500);
       });
     });
-    
+
     //批量删除用户
     mock.onGet('/user/batchremove').reply(config => {
       let {
@@ -128,7 +128,7 @@ export default {
         }, 500);
       });
     });
-
+    
     //编辑用户
     mock.onGet('/user/edit').reply(config => {
       let {

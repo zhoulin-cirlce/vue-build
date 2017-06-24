@@ -73,6 +73,7 @@ import Hello from 'components/Hello.vue'
 			}
 		},
 		created(){
+			let route = this.$route.params.id;
 			let params = this.$route.params;
 			console.log(params)
 		},

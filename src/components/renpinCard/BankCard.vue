@@ -1,5 +1,7 @@
 <template>
     <section class="bankcard">
+        <button @click="add">与兄弟组件传值</button>
+        <button v-on:click="talk">I like you</button>
         <div class="bank_cont">
             <div class="top-bank">
                 <div class="" v-show="bankType == 'putong'">
@@ -158,16 +160,20 @@
 </template>
 
 <script>
+    import bus from '../../bus.js'
     export default {
         data() {
             return {
                 bankType: '',
+                count:0
             }
         },
         props: [
             'integral'
         ],
-        mounted() {},
+        mounted:function() {
+            console.log(this.$parent.$data)
+        },
         methods: {
             chooseBankType(type) {
                 console.log(type)
@@ -176,7 +182,15 @@
                 } else {
     
                 }
+            },
+            talk:function(){
+                this.$emit('childsay','我是从子组件BankCard过来的')
+            },
+            add:function(){
+                bus.$emit('inc', this.count+=1)
             }
+           
+
         }
     }
 </script>
