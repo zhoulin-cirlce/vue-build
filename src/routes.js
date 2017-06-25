@@ -1,10 +1,13 @@
 //webpack按需加载组件 webpack必须2.0以上
 
-const NotFound = r => require.ensure([], () => r(require('./views/404')), ' recommend')
-const Form = r => require.ensure([], () => r(require('./views/nav1/Form')), ' recommend')
-const Home = r => require.ensure([], () => r(require('./views/Home')), ' recommend')
-const Login = r => require.ensure([], () => r(require('./views/Login')), ' recommend')
-let routes = [{
+const NotFound = r => require.ensure([], () => r(require('./views/404')), ' NotFound')
+const Form = r => require.ensure([], () => r(require('./views/nav1/Form')), ' Form')
+const Cardindex = r => require.ensure([], () => r(require('./views/rencard/CardIndex')), 'Cardindex')
+const Login = r => require.ensure([], () => r(require('./views/Login')), 'Login')
+const investment = r => require.ensure([], () => r(require('./views/reninvestment/Investment')), ' investment')
+let routes = [
+    //登录页
+    {
         path: '/login',
         component: Login,
         name: '',
@@ -16,15 +19,23 @@ let routes = [{
         name: '',
         hidden: true
     },
+    //
     {
         path: '/form/:status',
         name: 'form',
         component: Form
     },
+    //人品卡首页
     {
-        path: '/Home',
-        component: Home,
-        name: 'Home',
+        path: '/Cardindex',
+        component: Cardindex,
+        name: 'Cardindex',
+    },
+    //人品投资首页
+    {
+        name:'investment',
+        component: investment,
+        path: '/investment',
     },
    
     {

@@ -6,6 +6,7 @@
         <section class="title_head ellipsis" v-if="headTitle">
             <span>{{headTitle}}</span>
         </section>
+        <slot name="messagecenter" class="messri"></slot>
     </header>
 </template>
 
@@ -13,7 +14,7 @@
     export default {
         data() {
             return {
-                
+    
             }
         },
         props: [
@@ -25,7 +26,7 @@
 
 <style lang="scss" scoped>
     @import '~scss_page';
-    #head_top{
+    #head_top {
         background-color: $theme-color;
         position: fixed;
         z-index: 100;
@@ -33,36 +34,39 @@
         top: 0;
         @include wh(100%, 1.95rem);
     }
-    .head_goback{
+    
+    
+    .head_goback {
         @include wh(1.6rem, 1.95rem);
         width: 1.6rem;
         height: 1.95rem;
         line-height: 2.5rem;
-        text-align:center;
+        text-align: center;
     }
-    .head_login{
+    
+    .head_login {
         right: 0.55rem;
         @include sc(0.65rem, #fff);
         @include ct;
-        .login_span{
+        .login_span {
             color: #fff;
         }
-        .user_avatar{
+        .user_avatar {
             fill: #fff;
             @include wh(.8rem, .8rem);
         }
     }
-    .title_head{
+    
+    .title_head {
         @include center;
         width: 50%;
         color: #fff;
         text-align: center;
-        font-size:0.8rem;
-        .title_text{
+        font-size: 0.8rem;
+        .title_text {
             @include sc(0.8rem, #fff);
             text-align: center;
             font-weight: bold;
         }
     }
-    
 </style>

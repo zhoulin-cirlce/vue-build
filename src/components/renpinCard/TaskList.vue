@@ -32,7 +32,7 @@ import bus from '../../bus.js'
              bus.$on('inc',  (num) =>
                 this.c = num
             );
-            
+
             console.log(this.$parent.$data)
         },
         methods:{
@@ -46,6 +46,7 @@ import bus from '../../bus.js'
 <style lang="scss" scoped>
     @import '~assets/icon/icon_style.css';
     .task {
+        padding-bottom:50px;
         .task_title {
             font-size: 0.6rem;
             color: #ccc;
@@ -54,6 +55,7 @@ import bus from '../../bus.js'
             line-height: 28px;
         }
         .task_list {
+            background:#fff;
             height: 3rem;
             border-top: 1px solid #ccc;
             #icon {
@@ -73,7 +75,7 @@ import bus from '../../bus.js'
                 float: left;
                 width: 64%;
                 margin-left: 4%;
-                margin-top: 3%;
+                margin-top: 4%;
                 .textc {
                     font-size: 0.7rem;
                     color: #000
