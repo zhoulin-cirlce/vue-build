@@ -26,119 +26,24 @@
 <script>
 	import {
 		Swipe,
-		SwipeItem
+		SwipeItem,
+		Indicator
 	} from 'mint-ui';
 	import headerTop from 'components/headTop'
 	import foot_guide from 'components/footer'
 	import taskList from 'components/renpinCard/TaskList'
 	import BankCard from 'components/renpinCard/BankCard'
+	import {getTaskList,getCardList} from '../../api/api';
 	export default {
 		data() {
 			return {
 				taskTitle: '每月任务，快速加积分', //人品卡 列表头部
-				taskData: [{
-						iconClass: "icon-gift",
-						jifen: "+30积分",
-						contantText: "首次购买定期500元",
-						status: '500'
-					},
-					{
-						iconClass: "icon-delicious",
-						jifen: "+10积分",
-						contantText: "人品货代成功完成一笔接待",
-						status: '未完成'
-					},
-					{
-						iconClass: "icon-gift",
-						jifen: "+30积分",
-						contantText: "首次购买定期500元",
-						status: '已成功购买0/500'
-					},
-					{
-						iconClass: "icon-delicious",
-						jifen: "+10积分",
-						contantText: "人品货代成功完成一笔接待",
-						status: '未完成'
-					},
-					{
-						iconClass: "icon-gift",
-						jifen: "+30积分",
-						contantText: "首次购买定期500元",
-						status: '已成功购买0/500'
-					},
-					{
-						iconClass: "icon-delicious",
-						jifen: "+10积分",
-						contantText: "人品货代成功完成一笔接待",
-						status: '未完成'
-					},
-					{
-						iconClass: "icon-pinterest",
-						jifen: "+100积分",
-						contantText: "成功邀请好友投资并获得佣金",
-						status: '未完成'
-					}
-				],
+				taskData: "",
 				title: '人品卡',
 				baseUrl: 'https://fuss10.elemecdn.com',
-				cardList: [{
-						id: 15,
-						title: "每月翻牌",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "霸气十足",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "信用卡还款",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "人品专家",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "给你花",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "人品贷",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "办信用卡",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-					{
-						id: 15,
-						title: "美食",
-						image_url: "/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
-					},
-				],
-				integral: null ,//用户积分,
-				childsay:''
+				cardList: '',
+				integral: null, //用户积分,
+				childsay: ''
 			}
 		},
 		methods: {
@@ -155,31 +60,48 @@
 				});
 			},
 			//获取子组件BankCard 传来的值
-			listenTohome:function(data){
+			listenTohome: function(data) {
 				this.childsay = data;
 				console.log(data)
+			},
+			//获取数据
+			async initdata() {
+				Indicator.open({
+					text: 'Loading...',
+					spinnerType: 'fading-circle'
+				});
+				//获取用户信息
+				let user = sessionStorage.getItem('user');
+				console.log(user)
+				if (user) {
+					user = JSON.parse(user);
+					this.sysUserName = user.name || '';
+					this.sysUserAvatar = user.avatar || '';
+					this.integral = user.integral || '';
+				};
+				getCardList().then(data =>{
+					//取得cardListlen长度
+					let cardListlen = data.data.cardList.length;
+					//返回一个新数组
+					let newarr = data.data.cardList.concat([]);
+					//处理后的数据 
+					let cardarr = [];
+					for (let i = 0, j = 0; i < cardListlen; i += 8, j++) {
+						cardarr[j] = newarr.splice(0, 8);
+					}
+					this.cardList = cardarr;
+				})
+				
+				await getTaskList().then(data => {
+					
+					this.taskData = data.data.TaskList
+	
+				});
+				Indicator.close()
 			}
 		},
 		mounted() {
-			//获取用户信息
-			let user = sessionStorage.getItem('user');
-			console.log(user)
-			if (user) {
-				user = JSON.parse(user);
-				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
-				this.integral = user.integral || '';
-			};
-			//取得cardListlen长度
-			let cardListlen = this.cardList.length;
-			//返回一个新数组
-			let newarr = this.cardList.concat([]);
-			//处理后的数据 
-			let cardarr = [];
-			for (let i = 0, j = 0; i < cardListlen; i += 8, j++) {
-				cardarr[j] = newarr.splice(0, 8);
-			}
-			this.cardList = cardarr
+			this.initdata()			
 		},
 		components: {
 			headerTop,
@@ -195,13 +117,15 @@
 	.top {
 		margin-top: 1.95rem;
 	}
-	.cardindex{
+	
+	.cardindex {
 		margin-bottom: 1.95rem;
-		background: rgb(247, 243, 243);
 	}
-	#card{
-		background:#fff
+	
+	#card {
+		background: #fff
 	}
+	
 	.sw-card {
 		height: 7.3rem;
 	}

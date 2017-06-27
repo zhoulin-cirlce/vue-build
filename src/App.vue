@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<transition name="fade" 
+		<transition name="router-fade" 
 			mode="out-in">
 			<router-view></router-view>
 		</transition>
@@ -19,73 +19,6 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
-body {
-	margin: 0px;
-	padding: 0px;
-	/*background: url(assets/bg1.jpg) center !important;
-		background-size: cover;*/
-	// background: #1F2D3D;
-	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
-	font-size: 14px;
-	-webkit-font-smoothing: antialiased;
-}
-*{margin: 0px;padding: 0px;}
-a{
-	display:inline-block;
-	font-size:0.7rem;
-	text-decoration: none;
-}
-#app {
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	width: 100%;
-}
-
-.el-submenu [class^=fa] {
-	vertical-align: baseline;
-	margin-right: 10px;
-}
-
-.el-menu-item [class^=fa] {
-	vertical-align: baseline;
-	margin-right: 10px;
-}
-
-.toolbar {
-	background: #f2f2f2;
-	padding: 10px;
-	//border:1px solid #dfe6ec;
-	margin: 10px 0px;
-	.el-form-item {
-		margin-bottom: 10px;
-	}
-}
-
-.fade-enter-active,
-.fade-leave-active {
-	transition: all .2s ease;
-}
-
-.fade-enter,
-.fade-leave-active {
-	opacity: 0;
-}
-
-			
-.clearfix:after{       
-    content: ".";     /**//*内容为“.”就是一个英文的句号而已。也可以不写。*/
-    display: block;   /**//*加入的这个元素转换为块级元素。*/
-    clear: both;     /**//*清除左右两边浮动。*/
-    visibility: hidden;      /**//*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/
-    line-height: 0;    /**//*行高为0；*/
-    height: 0;     /**//*高度为0；*/
-    font-size:0;    /**//*字体大小为0；*/
-}
-
-.clearfix{ *zoom:1;}   /**//*这是针对于IE6的，因为IE6不支持:after伪类，这个神奇的zoom:1让IE6的元素可以清除浮动来包裹内部元素。*/
-.ellipsis{white-space: nowrap;word-wrap: normal;overflow:hidden; text-overflow:ellipsis;}
-		
+<style scoped>
+	@import './styles/comm.scss';
 </style>

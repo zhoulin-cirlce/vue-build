@@ -1,9 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {
-  LoginUsers,
-  Users
-} from './data/user';
+import {LoginUsers,Users} from './data/user';
+import {TaskList} from './data/tasklist';
+import {cardList} from './data/cardlist';
 let _Users = Users;
 
 export default {
@@ -12,6 +11,7 @@ export default {
    */
   bootstrap() {
     let mock = new MockAdapter(axios);
+
 
     // mock success request
     mock.onGet('/success').reply(200, {
@@ -22,7 +22,30 @@ export default {
     mock.onGet('/error').reply(500, {
       msg: 'failure'
     });
-
+    // TaskList
+    mock.onPost('/task/list').reply(param => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            TaskList :TaskList
+          }]);
+        }, 1000);
+      });
+    })
+    //cardlist
+    mock.onPost('/card/list').reply(param => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            cardList :cardList
+          }]);
+        }, 1000);
+      });
+    })
     //登录
     mock.onPost('/login').reply(config => {
       let {
@@ -92,7 +115,7 @@ export default {
             total: total,
             users: mockUsers
           }]);
-        }, 1000);
+        }, 4000);
       });
     });
 
@@ -128,7 +151,7 @@ export default {
         }, 500);
       });
     });
-    
+
     //编辑用户
     mock.onGet('/user/edit').reply(config => {
       let {

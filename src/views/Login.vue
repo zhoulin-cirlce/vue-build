@@ -80,7 +80,7 @@
         var _this = this;
           if (true) {
             this.logining = true;
-            var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+            const loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
              // console.log(data)
               this.logining = false;

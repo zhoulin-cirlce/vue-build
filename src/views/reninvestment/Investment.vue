@@ -4,71 +4,87 @@
             <router-link to="/messge" slot="messagecenter" class="messri">消息中心</router-link>
         </header-top>
         <div class="ment-main">
-            <div class="renpin">
-                <div class="alltotal ">
-                    <div class="clowh">昨日收益(元)<span></span></div>
-                    <div class="clowh aftermoney">0.00</div>
-                    <div class="clowh">总资产(元)</div>
-                    <div class="clowh afallmoney">0.00</div>
-                </div>
-                <div class="payaessay f_clear">
-                    <span class="pay">充值</span>
-                    <span>取现</span>
-                </div>
-                <div class="prolist">
-                    <div class="balance f_clear">
-                        <div class="proname"><span>余额(4.43%)</span><span class="prodes ">自动竞购人品宝</span></div>
-                        <div class="promon">￥0.00</div>
+            <mt-loadmore :top-method="loadTop" ref="loadmore">
+    
+                <div class="renpin">
+                    <div class="alltotal ">
+                        <div class="clowh">昨日收益(元)<span></span></div>
+                        <div class="clowh aftermoney">0.00</div>
+                        <div class="clowh">总资产(元)</div>
+                        <div class="clowh afallmoney">0.00</div>
                     </div>
-                    <div class="balance f_clear">
-                        <div class="proname"><span>余额(4.43%)</span><span class="prodes ">自动竞购人品宝</span></div>
-                        <div class="promon">￥0.00</div>
+                    <div class="payaessay f_clear">
+                        <span class="pay">充值</span>
+                        <span>取现</span>
                     </div>
-                    <div class="balance f_clear">
-                        <div class="proname"><span>余额(4.43%)</span><span class="prodes f_fnt2">自动竞购人品宝</span></div>
-                        <div class="promon">￥0.00</div>
-                    </div>
-                    <div class="balance f_clear">
-                        <div class="proname"><span>余额(4.43%)<span class="num">99+</span></span><span class="prodes f_fnt2">自动竞购人品宝</span></div>
-                        <div class="promon liji">立即投资</div>
-                    </div>
-                </div>
-                <div class="explain">
-                    <div class="state"><span class="zijin"></span>账户资金由新浪支付托管 江西银行存管对接中</div>
-                    <div class="custanum f_clear">
-                        <!--成交金额-->
-                        <div class="accrumony f_clear">
-                            <span class="jepic jpme"></span>
-                            <div class="leiji">
-                                <span>266.08亿元</span>
-                                <span>累计成交金额</span>
-                            </div>
+                    <div class="prolist">
+                        <div class="balance f_clear">
+                            <div class="proname"><span>余额(4.43%)</span><span class="prodes ">自动竞购人品宝</span></div>
+                            <div class="promon">￥0.00</div>
                         </div>
-                        <!--成交用户-->
-                        <div class="accrucust f_clear">
-                            <span class="jepic jpmm"></span>
-                            <div class="leiji">
-                                <span>464.9万人</span>
-                                <span>累计成交用户</span>
-                            </div>
+                        <div class="balance f_clear">
+                            <div class="proname"><span>余额(4.43%)</span><span class="prodes ">自动竞购人品宝</span></div>
+                            <div class="promon">￥0.00</div>
+                        </div>
+                        <div class="balance f_clear">
+                            <div class="proname"><span>余额(4.43%)</span><span class="prodes f_fnt2">自动竞购人品宝</span></div>
+                            <div class="promon">￥0.00</div>
+                        </div>
+                        <div class="balance f_clear">
+                            <div class="proname"><span>余额(4.43%)<span class="num">99+</span></span><span class="prodes f_fnt2">自动竞购人品宝</span></div>
+                            <div class="promon liji">立即投资</div>
                         </div>
                     </div>
+                    <div class="explain">
+                        <div class="state"><span class="zijin"></span>账户资金由新浪支付托管 江西银行存管对接中</div>
+                        <div class="custanum f_clear">
+                            <!--成交金额-->
+                            <div class="accrumony f_clear">
+                                <span class="jepic jpme"></span>
+                                <div class="leiji">
+                                    <span>266.08亿元</span>
+                                    <span>累计成交金额</span>
+                                </div>
+                            </div>
+                            <!--成交用户-->
+                            <div class="accrucust f_clear">
+                                <span class="jepic jpmm"></span>
+                                <div class="leiji">
+                                    <span>464.9万人</span>
+                                    <span>累计成交用户</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+    
+            </mt-loadmore>
         </div>
         <foot_guide></foot_guide>
     </div>
 </template>
 
 <script>
+    import {Indicator} from 'mint-ui';
     import headerTop from 'components/headTop'
     import foot_guide from 'components/footer'
     export default {
         name: 'Investment',
         data() {
             return {
-    
+                bottomText: ''
             };
+        },
+        created: function() {
+            
+        },
+        methods: {
+            loadTop() {
+                // 加载更多数据
+                this.$refs.loadmore.onTopLoaded();
+    
+            },
+    
         },
         components: {
             headerTop,
@@ -97,8 +113,18 @@
     }
     
     .ment-main {
-        margin-top: 1.94rem;
-        background: #F5F5F5
+        top: 1.94rem;
+        position: absolute;
+        background: #F5F5F5;
+        left: 0;
+        right: 0;
+        bottom: 1.94rem;
+    }
+    .mint-indicator-mask{
+        z-index:999 !important;
+    }
+    .mint-loadmore {
+        height: 100%
     }
     
     .f_clear:after {
@@ -130,12 +156,11 @@
     
     .alltotal .afallmoney {
         margin-top: 5px;
-        font-size:.8rem
+        font-size: .8rem;
     }
     
     .payaessay {
         width: 100%;
-        ;
         padding: 2% 0;
         background: #FFFFFF;
         color: #6B6B6B;
@@ -174,7 +199,7 @@
         color: #B3B3B3;
         display: block;
         font-size: 0.6rem;
-        margin-top:5px
+        margin-top: 5px
     }
     
     .prolist .balance .promon {
@@ -213,17 +238,16 @@
         height: 15px;
         width: 21px;
         margin-left: 1%;
-        background-size:12px;
+        background-size: 12px;
         display: inline-block;
-        vertical-align:middle
+        vertical-align: middle
     }
     
     .explain .custanum {
         background: #fff;
-        padding: 5% 0;
+        margin: 5% 0;
         color: #B3B3B3;
         font-size: 12px;
-        margin-bottom:2.5rem
     }
     
     .explain .custanum .accrumony {
@@ -249,22 +273,24 @@
     
     .jepic {
         float: left;
-       margin: 3% 0 0 24%;
+        margin: 3% 0 0 24%;
     }
-    .jpmm{
-         background: url(../../assets/icon-me-ucenter.png) no-repeat;
+    
+    .jpmm {
+        background: url(../../assets/icon-me-ucenter.png) no-repeat;
         height: 20px;
         width: 21px;
-        background-size:20px;
+        background-size: 20px;
         display: inline-block;
-        vertical-align:middle
+        vertical-align: middle
     }
-    .jpme{
-         background: url(../../assets/icon-bank-w.png) no-repeat;
+    
+    .jpme {
+        background: url(../../assets/icon-bank-w.png) no-repeat;
         height: 20px;
         width: 21px;
-        background-size:20px;
+        background-size: 20px;
         display: inline-block;
-        vertical-align:middle
+        vertical-align: middle
     }
 </style>

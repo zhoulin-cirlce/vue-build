@@ -1,5 +1,4 @@
 //webpack按需加载组件 webpack必须2.0以上
-
 const NotFound = r => require.ensure([], () => r(require('./views/404')), ' NotFound')
 const Form = r => require.ensure([], () => r(require('./views/nav1/Form')), ' Form')
 const Cardindex = r => require.ensure([], () => r(require('./views/rencard/CardIndex')), 'Cardindex')
