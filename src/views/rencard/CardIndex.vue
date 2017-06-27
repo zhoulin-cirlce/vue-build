@@ -66,10 +66,10 @@
 			},
 			//获取数据
 			async initdata() {
-				Indicator.open({
-					text: 'Loading...',
-					spinnerType: 'fading-circle'
-				});
+				// Indicator.open({
+				// 	text: 'Loading...',
+				// 	spinnerType: 'fading-circle'
+				// });
 				//获取用户信息
 				let user = sessionStorage.getItem('user');
 				console.log(user)
