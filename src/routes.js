@@ -1,3 +1,4 @@
+
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
@@ -10,8 +11,14 @@ import Page5 from './views/nav2/Page5.vue'
 import Page6 from './views/nav3/Page6.vue'
 import echarts from './views/charts/echarts.vue'
 
-
+//webpack按需加载组件 webpack必须2.0以上
+// const NotFound = r => require.ensure([], () => r(require('./views/404')), ' NotFound')
+// const Form = r => require.ensure([], () => r(require('./views/nav1/Form')), ' Form')
+// const Cardindex = r => require.ensure([], () => r(require('./views/rencard/CardIndex')), 'Cardindex')
+// const Login = r => require.ensure([], () => r(require('./views/Login')), 'Login')
+// const investment = r => require.ensure([], () => r(require('./views/reninvestment/Investment')), ' investment')
 let routes = [
+    //登录页
     {
         path: '/login',
         component: Login,
@@ -24,52 +31,31 @@ let routes = [
         name: '',
         hidden: true
     },
-    //{ path: '/main', component: Main },
+    //
     {
-        path: '/',
-        component: Home,
-        name: '导航一',
-        iconCls: 'el-icon-message',//图标样式class
-        children: [
-            { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/table', component: Table, name: 'Table' },
-            { path: '/form', component: Form, name: 'Form' },
-            { path: '/user', component: user, name: '列表' },
-        ]
+        path: '/form/:status',
+        name: 'form',
+        component: Form
     },
+    //人品卡首页
     {
-        path: '/',
-        component: Home,
-        name: '导航二',
-        iconCls: 'fa fa-id-card-o',
-        children: [
-            { path: '/page4', component: Page4, name: '页面4' },
-            { path: '/page5', component: Page5, name: '页面5' }
-        ]
+        path: '/Cardindex',
+        component: Cardindex,
+        name: 'Cardindex',
     },
+    //人品投资首页
     {
-        path: '/',
-        component: Home,
-        name: '',
-        iconCls: 'fa fa-address-card',
-        leaf: true,//只有一个节点
-        children: [
-            { path: '/page6', component: Page6, name: '导航三' }
-        ]
+        name:'investment',
+        component: investment,
+        path: '/investment',
     },
-    {
-        path: '/',
-        component: Home,
-        name: 'Charts',
-        iconCls: 'fa fa-bar-chart',
-        children: [
-            { path: '/echarts', component: echarts, name: 'echarts' }
-        ]
-    },
+   
     {
         path: '*',
         hidden: true,
-        redirect: { path: '/404' }
+        redirect: {
+            path: '/404'
+        }
     }
 ];
 

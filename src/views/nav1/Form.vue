@@ -2,6 +2,9 @@
 	<el-form ref="form" :model="form" label-width="80px" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
 		<el-form-item label="活动名称">
 			<el-input v-model="form.name"></el-input>
+			 <mt-button>按钮</mt-button>
+			 <mt-switch v-model="form.region"></mt-switch>
+		</div>
 		</el-form-item>
 		<el-form-item label="活动区域">
 			<el-select v-model="form.region" placeholder="请选择活动区域">
@@ -42,10 +45,13 @@
 			<el-button type="primary">立即创建</el-button>
 			<el-button @click.native.prevent>取消</el-button>
 		</el-form-item>
+		<Hello></Hello>
 	</el-form>
+
 </template>
 
 <script>
+import Hello from 'components/Hello.vue'
 	export default {
 		data() {
 			return {
@@ -65,7 +71,18 @@
 			onSubmit() {
 				console.log('submit!');
 			}
+		},
+		created(){
+			let route = this.$route.params.id;
+			let params = this.$route.params;
+			console.log(params)
+		},
+		components:{
+			Hello
 		}
 	}
 
 </script>
+<style scoped lang="scss">
+	@import '~scss_page';
+</style>

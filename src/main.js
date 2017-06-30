@@ -3,21 +3,24 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-//import './assets/theme/theme-green/index.css'
+import 'src/common/js/rem.js'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 import VueRouter from 'vue-router'
 import store from './vuex/store'
 import Vuex from 'vuex'
-//import NProgress from 'nprogress'
-//import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
 // import components from './components'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+// import Hello from 'components/Hello'
 
+// Vue.component('Hello',Hello)
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(MintUI)
 
 //NProgress.configure({ showSpinner: false });
 
@@ -38,9 +41,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-//router.afterEach(transition => {
-//NProgress.done();
-//});
+
 
 new Vue({
   //el: '#app',

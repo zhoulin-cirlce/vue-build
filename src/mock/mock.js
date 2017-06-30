@@ -1,6 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { LoginUsers, Users } from './data/user';
+import {LoginUsers,Users} from './data/user';
+import {TaskList} from './data/tasklist';
+import {cardList} from './data/cardlist';
 let _Users = Users;
 
 export default {
@@ -9,6 +11,7 @@ export default {
    */
   bootstrap() {
     let mock = new MockAdapter(axios);
+
 
     // mock success request
     mock.onGet('/success').reply(200, {
@@ -19,10 +22,36 @@ export default {
     mock.onGet('/error').reply(500, {
       msg: 'failure'
     });
-
+    // TaskList
+    mock.onPost('/task/list').reply(param => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            TaskList :TaskList
+          }]);
+        }, 1000);
+      });
+    })
+    //cardlist
+    mock.onPost('/card/list').reply(param => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            cardList :cardList
+          }]);
+        }, 1000);
+      });
+    })
     //登录
     mock.onPost('/login').reply(config => {
-      let {username, password} = JSON.parse(config.data);
+      let {
+        username,
+        password
+      } = JSON.parse(config.data);
       return new Promise((resolve, reject) => {
         let user = null;
         setTimeout(() => {
@@ -35,9 +64,16 @@ export default {
           });
 
           if (hasUser) {
-            resolve([200, { code: 200, msg: '请求成功', user }]);
+            resolve([200, {
+              code: 200,
+              msg: '请求成功',
+              user
+            }]);
           } else {
-            resolve([200, { code: 500, msg: '账号或密码错误' }]);
+            resolve([200, {
+              code: 500,
+              msg: '账号或密码错误'
+            }]);
           }
         }, 1000);
       });
@@ -45,7 +81,9 @@ export default {
 
     //获取用户列表
     mock.onGet('/user/list').reply(config => {
-      let {name} = config.params;
+      let {
+        name
+      } = config.params;
       let mockUsers = _Users.filter(user => {
         if (name && user.name.indexOf(name) == -1) return false;
         return true;
@@ -61,7 +99,10 @@ export default {
 
     //获取用户列表（分页）
     mock.onGet('/user/listpage').reply(config => {
-      let {page, name} = config.params;
+      let {
+        page,
+        name
+      } = config.params;
       let mockUsers = _Users.filter(user => {
         if (name && user.name.indexOf(name) == -1) return false;
         return true;
@@ -74,13 +115,15 @@ export default {
             total: total,
             users: mockUsers
           }]);
-        }, 1000);
+        }, 4000);
       });
     });
 
     //删除用户
     mock.onGet('/user/remove').reply(config => {
-      let { id } = config.params;
+      let {
+        id
+      } = config.params;
       _Users = _Users.filter(u => u.id !== id);
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -94,7 +137,9 @@ export default {
 
     //批量删除用户
     mock.onGet('/user/batchremove').reply(config => {
-      let { ids } = config.params;
+      let {
+        ids
+      } = config.params;
       ids = ids.split(',');
       _Users = _Users.filter(u => !ids.includes(u.id));
       return new Promise((resolve, reject) => {
@@ -109,7 +154,14 @@ export default {
 
     //编辑用户
     mock.onGet('/user/edit').reply(config => {
-      let { id, name, addr, age, birth, sex } = config.params;
+      let {
+        id,
+        name,
+        addr,
+        age,
+        birth,
+        sex
+      } = config.params;
       _Users.some(u => {
         if (u.id === id) {
           u.name = name;
@@ -132,7 +184,13 @@ export default {
 
     //新增用户
     mock.onGet('/user/add').reply(config => {
-      let { name, addr, age, birth, sex } = config.params;
+      let {
+        name,
+        addr,
+        age,
+        birth,
+        sex
+      } = config.params;
       _Users.push({
         name: name,
         addr: addr,

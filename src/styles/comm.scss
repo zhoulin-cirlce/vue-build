@@ -1,0 +1,86 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.mint-indicator{
+	-webkit-transition: inherit !important;
+    transition: inherit !important;
+}
+a {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+#app {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+}
+
+.mint-indicator-mask {
+    z-index: 999
+}
+.mint-indicator-wrapper{
+	z-index: 888
+}
+.mint-indicator{
+}
+.el-submenu [class^=fa] {
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.el-menu-item [class^=fa] {
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.toolbar {
+    background: #f2f2f2;
+    padding: 10px;
+    margin: 10px 0px;
+    .el-form-item {
+        margin-bottom: 10px;
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    font-size: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
