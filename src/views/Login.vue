@@ -34,6 +34,7 @@
         </div>
       <div class="btn_submit">
         <mt-button size="large" type="primary" @click.native.prevent="loginSubmit">登录</mt-button>
+        <button @click="proxytest">代理测试</button>
       </div>
     </form>
     <Hello></Hello>
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-  import { requestLogin } from '../api/api';
+  import { requestLogin,requestProxy } from '../api/api';
   import { getUserList } from '../api/api';
   import { MessageBox } from 'mint-ui';
   import Hello from 'components/Hello.vue'
@@ -76,13 +77,19 @@
       };
     },
     methods: {
+      //代理接口测式
+      proxytest(){
+        const testParams = { start: 0, count:9 };
+        requestProxy(testParams).then(res => {
+          console.log('res---',res);
+        });
+      },
       loginSubmit(ev) {
         var _this = this;
           if (true) {
             this.logining = true;
             const loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
-             // console.log(data)
               this.logining = false;
               let { msg, code, user } = data;
               if (code !== 200) {

@@ -1,8 +1,8 @@
 {
-  "name": "vueadmin",
+  "name": "vue51",
   "version": "1.0.5",
-  "description": "vue admin project",
-  "author": "taylor <709161610@qq.com>",
+  "description": "vue 51 project",
+  "author": "ycc <834153504@qq.com>",
   "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",

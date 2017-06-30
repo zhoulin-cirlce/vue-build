@@ -18,6 +18,7 @@ var port = process.env.PORT || config.dev.port
 var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
+//获取到代理配置
 var proxyTable = config.dev.proxyTable
 
 var app = express()
@@ -44,7 +45,9 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-// proxy api requests
+// 设置代理
+//context是proxyTable第一个参数代理名如'/api'
+//options是第二个参数{target:'http://www.example.org'}
 Object.keys(proxyTable).forEach(function (context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
