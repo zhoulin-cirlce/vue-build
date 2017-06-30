@@ -34,7 +34,7 @@
         </div>
       <div class="btn_submit">
         <mt-button size="large" type="primary" @click.native.prevent="loginSubmit">登录</mt-button>
-        <button @click="proxytest">代理测试</button>
+        <!--<button @click="proxytest">代理测试</button>-->
       </div>
     </form>
     <Hello></Hello>

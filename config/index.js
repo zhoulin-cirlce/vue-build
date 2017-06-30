@@ -23,13 +23,13 @@ module.exports = {
     assetsPublicPath: '/',
     //dev环境配置代理项
     proxyTable: {
-       '/v2': {   //context: 确定应将哪些请求代理到目标主机
-        target: 'https://api.douban.com', //options.target: 目标主机到代理  https://api.douban.com/v2/book/1220562
-        changeOrigin: true,
-        pathRewrite: {
-          // '^/v2': ''  //代理的接口默认会加上proxyTable第一个参数如v2,若接口不需要则pathRewrite里设'^/v2:':''
-        }
-      }
+      //  '/v2': {   //context: 确定应将哪些请求代理到目标主机
+      //   target: 'https://api.douban.com', //options.target: 目标主机到代理  https://api.douban.com/v2/book/1220562
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     // '^/v2': ''  //代理的接口默认会加上proxyTable第一个参数如v2,若接口不需要则pathRewrite里设'^/v2:':''
+      //   }
+      // }
     },
     cssSourceMap: false
   }
