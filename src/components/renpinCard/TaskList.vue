@@ -6,14 +6,12 @@
         {{c}}
         <div class="task_cont">
             <div class="task_list clearfix" v-for="item in taskData">
-                <router-link :to="{ name: 'form', params: {status:item.status}}">
                     <div :class="item.iconClass" id="icon"></div>
                     <div class="content ellipsis">
                         <p class="textc">{{item.contantText}}</p>
                         <p class="status">{{item.status}}</p>
                     </div>
                     <div class="jifen">{{item.jifen}}</div>
-                </router-link>
             </div>
         </div>
     </div>

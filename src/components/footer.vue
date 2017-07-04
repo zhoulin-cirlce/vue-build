@@ -41,6 +41,7 @@
 
 <script>
     export default {
+        name: 'footer',
     	data(){
             return{
                 
@@ -68,7 +69,7 @@
 
     #foot_guide{
         background-color: #fff;
-        position: fixed;
+        position: relative;
         z-index: 100;
         left: 0;
         right: 0;

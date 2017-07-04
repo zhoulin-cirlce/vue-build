@@ -1,4 +1,4 @@
-<template>
+<!--<template>
 	<el-form ref="form" :model="form" label-width="80px" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
 		<el-form-item label="活动名称">
 			<el-input v-model="form.name"></el-input>
@@ -85,4 +85,4 @@ import Hello from 'components/Hello.vue'
 </script>
 <style scoped lang="scss">
 	@import '~scss_page';
-</style>
+</style>-->

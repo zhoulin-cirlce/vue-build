@@ -29,7 +29,7 @@
             },
             size: {
                 type: Number,
-                default: 2
+                default: 1
             }
         },
         computed: {
@@ -46,6 +46,12 @@
 
 <style>
     .c-loading {
+        position:fixed;
+        height:100%;
+        z-index:888;
+        top:0;
+        left:0;
+        right:0;
         text-align: center;
         & span {
             vertical-align: middle;
@@ -58,6 +64,12 @@
         border: 4px solid transparent;
         border-radius: 50%;
         display: inline-block;
+        height: 1rem;
+    width: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 47%;
+    transform: translate(-50%, -50%);
     }
     
     @-webkit-keyframes c-loading-snake-rotate {

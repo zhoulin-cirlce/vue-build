@@ -5,8 +5,13 @@ const LoginUsers = [
     username: 'admin',
     password: '123456',
     avatar: 'https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/user.png',
-    name: '张某某',
-    integral:400
+    name: '*聪聪',
+    integral:400,      //积分
+    money:'10000.00',  //总资产
+    shouyi:'5.6',      //收益
+    balance:'5000.00', //余额
+    yuebao:'5000.00'
+
   }
 ];
 

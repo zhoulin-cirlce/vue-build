@@ -36,7 +36,7 @@ module.exports = {
             // 'router': path.resolve(__dirname, '../src/router'),
             // 'mock': path.resolve(__dirname, '../src/mock'),
             // 'vendor': path.resolve(__dirname, '../src/vendor'),
-            // 'static': path.resolve(__dirname, '../static')
+            //'static': path.resolve(__dirname, '../static')
         }
     },
   module: {

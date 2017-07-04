@@ -1,7 +1,7 @@
 <template>
     <section class="bankcard">
-        <button @click="add">与兄弟组件传值</button>
-        <button v-on:click="talk">I like you</button>
+        <!--<button @click="add">与兄弟组件传值</button>
+        <button v-on:click="talk">I like you</button>-->
         <div class="bank_cont">
             <div class="top-bank">
                 <div class="" v-show="bankType == 'putong'">
@@ -27,7 +27,11 @@
                             <p class="shuoming">人品贷抵扣卷</p>
                         </div>
                     </div>
-                    <div class="deatils">查看详情</div>
+                    <div class="deatils">
+                        <router-link :to="{ name: 'Carddeatils', params: {cardtype:'puka'}}">
+                            查看详情
+                        </router-link>
+                    </div>
                 </div>
                 <div class="" v-show="bankType == 'yinka'">
                     <div class="top-title">
@@ -51,7 +55,11 @@
                             <p class="shuoming">人品贷抵扣卷</p>
                         </div>
                     </div>
-                    <div class="deatils">查看详情</div>
+                    <div class="deatils">
+                    <router-link :to="{ name: 'Carddeatils', params: {cardtype:'yinka'}}">
+                            查看详情
+                        </router-link>
+                    </div>
                 </div>
                 <div class="" v-show="bankType == 'jinka'">
                     <div class="top-title">
@@ -75,7 +83,9 @@
                             <p class="shuoming">人品贷抵扣卷</p>
                         </div>
                     </div>
-                    <div class="deatils">查看详情</div>
+                    <div class="deatils"><router-link :to="{ name: 'Carddeatils', params: {cardtype:'jinka'}}">
+                            查看详情
+                        </router-link></div>
                 </div>
                 <div class="" v-show="bankType == 'baijin'">
                     <div class="top-title">
@@ -99,7 +109,11 @@
                             <p class="shuoming">人品贷抵扣卷</p>
                         </div>
                     </div>
-                    <div class="deatils">查看详情</div>
+                    <div class="deatils">
+                    <router-link :to="{ name: 'Carddeatils', params: {cardtype:'baijin'}}">
+                            查看详情
+                        </router-link>
+                    </div>
                 </div>
                 <div class="" v-show="bankType == 'heika'">
                     <div class="top-title">
@@ -123,13 +137,17 @@
                             <p class="shuoming">人品贷抵扣卷</p>
                         </div>
                     </div>
-                    <div class="deatils">查看详情</div>
+                    <div class="deatils">
+                    <router-link :to="{ name: 'Carddeatils', params: {cardtype:'heika'}}">
+                            查看详情
+                        </router-link>
+                    </div>
                 </div>
             </div>
     
             <div class="bottom-bar clearfix">
                 <ul class="steps  clearfix">
-                    <li :class="{select:bankType=='putong'}" @click="chooseBankType($index)">
+                    <li :class="{select:bankType=='putong'}" @click="chooseBankType('putong')">
                         <div class="triangle-down"></div>
                         普卡
                     </li>
@@ -161,6 +179,7 @@
 
 <script>
     import bus from '../../bus.js'
+    import {mapGetters,mapActions} from 'vuex'
     export default {
         data() {
             return {
@@ -172,7 +191,17 @@
             'integral'
         ],
         mounted:function() {
-            console.log(this.$parent.$data)
+            
+            let integral = this.getUserinfo.integral;
+            if(integral < 600){
+                this.bankType = 'putong'
+            }
+        },
+        computed: {
+            // 使用对象展开运算符将 getters 混入 computed 对象中
+            ...mapGetters([
+                'getUserinfo',
+            ])
         },
         methods: {
             chooseBankType(type) {
@@ -334,6 +363,10 @@
         font-size: 0.5rem;
         margin: 15px auto;
         border-radius: 6px;
+        a{
+            color: #ccc;
+            font-size: 0.5rem;
+        }
     }
     
     .bankcard {
