@@ -1,9 +1,8 @@
 {
-
-  "name": "vue51",
+  "name": "app",
   "version": "1.0.5",
-  "description": "vue 51 project",
-  "author": "ycc <834153504@qq.com>",
+  "description": "vue app project",
+  "author": "YouCongcong <834153504@qq.com>",
   "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",

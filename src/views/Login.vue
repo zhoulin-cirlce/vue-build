@@ -12,7 +12,6 @@
       
       <div class="btn_submit">
         <mt-button size="large" type="primary" @click.native.prevent="loginSubmit">登录</mt-button>
-        <!--<button @click="proxytest">代理测试</button>-->
       </div>
     </form>
     <Hello></Hello>
@@ -35,9 +34,6 @@
   import {
     MessageBox
   } from 'mint-ui';
-  import { requestLogin,requestProxy } from '../api/api';
-  import { getUserList } from '../api/api';
-  import { MessageBox } from 'mint-ui';
   import Hello from 'components/Hello.vue'
   import {
     mapGetters,
@@ -117,33 +113,6 @@
           console.log('error submit!!');
           return false;
         }
-      //代理接口测式
-      proxytest(){
-        const testParams = { start: 0, count:9 };
-        requestProxy(testParams).then(res => {
-          console.log('res---',res);
-        });
-      },
-      loginSubmit(ev) {
-        var _this = this;
-          if (true) {
-            this.logining = true;
-            const loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            requestLogin(loginParams).then(data => {
-              this.logining = false;
-              let { msg, code, user } = data;
-              if (code !== 200) {
-                console.log(msg)
-                MessageBox.alert(msg,'提示',);
-              } else {
-                 sessionStorage.setItem('user', JSON.stringify(user));
-                 this.$router.push({ path: '/Cardindex' });
-              }
-            });
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
       }
     },
     components: {
