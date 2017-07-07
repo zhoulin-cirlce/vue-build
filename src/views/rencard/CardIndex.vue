@@ -40,14 +40,8 @@
 	import loading from 'components/loading'
 	import taskList from 'components/renpinCard/TaskList'
 	import BankCard from 'components/renpinCard/BankCard'
-	import {
-        mapGetters,
-        mapActions
-    } from 'vuex'
-	import {
-		getTaskList,
-		getCardList
-	} from '../../api/api';
+	import {mapGetters,mapActions} from 'vuex'
+	import {getTaskList,getCardList,getUserListPage} from '../../api/api';
 	export default {
 		data() {
 			return {
@@ -64,6 +58,7 @@
 			...mapGetters([
                 'getShowStause'
             ])
+			
 		},
 		methods: {
 			
@@ -111,6 +106,9 @@
 		},
 		mounted() {
 			this.initdata()
+			getUserListPage({page:7}).then(data =>{
+				console.log(data)
+			})
 		},
 		components: {
 			headerTop,

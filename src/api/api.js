@@ -12,6 +12,11 @@ export const getTaskList = params => {return axios.post(`${base}/task/list`,{par
 
 export const getCardList = params => {return axios.post(`${base}/card/list`,{params : params});}
 
+export const getProfileList = params =>{return axios.post(`${base}/profile/list`,{params : params});}
+
+export const getbannerList = params => {return axios.post(`${base}/banner/list`,{params : params});}
+//
+
 export const getUserListPage = params => { return axios.get(`${base}/user/listpage`, { params: params }); };
 
 export const removeUser = params => { return axios.get(`${base}/user/remove`, { params: params }); };

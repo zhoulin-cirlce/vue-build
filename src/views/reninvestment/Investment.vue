@@ -73,9 +73,7 @@
         </div>
         <foot_guide></foot_guide>
     
-        <transition name="router-slid" mode="out-in">
-            <router-view></router-view>
-        </transition>
+        
     </div>
 </template>
 
@@ -103,7 +101,6 @@
             this.yuebao = useInfo.yuebao;
             this.balance = useInfo.balance;
             this.shouyi = useInfo.shouyi;
-    
         },
         methods: {
             ...mapActions([
@@ -164,7 +161,7 @@
     
     .alltotal {
         background: #fa6666;
-        padding: 4% 0;
+        padding: 6% 0;
         font-size: 0.6rem;
     }
     

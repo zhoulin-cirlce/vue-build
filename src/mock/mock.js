@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {LoginUsers,Users} from './data/user';
+import {LoginUsers,Users,profile,bannerList} from './data/user';
 import {TaskList} from './data/tasklist';
 import {cardList} from './data/cardlist';
 let _Users = Users;
@@ -44,6 +44,29 @@ export default {
             cardList :cardList
           }]);
         }, 1000);
+      });
+    })
+    mock.onPost('/profile/list').reply(param =>{
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            profile :profile
+          }]);
+        }, 10);
+      });
+    })
+
+    mock.onPost('/banner/list').reply(param =>{
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '请求成功',
+            bannerList
+          }]);
+        }, 10);
       });
     })
     //登录
@@ -97,25 +120,23 @@ export default {
       });
     });
 
-    //获取用户列表（分页）
+    //信息披露列表（分页）
     mock.onGet('/user/listpage').reply(config => {
       let {
-        page,
-        name
+        page
       } = config.params;
-      let mockUsers = _Users.filter(user => {
-        if (name && user.name.indexOf(name) == -1) return false;
-        return true;
-      });
+      let mockUsers = _Users;
       let total = mockUsers.length;
-      mockUsers = mockUsers.filter((u, index) => index < 20 * page && index >= 20 * (page - 1));
+      mockUsers = mockUsers.filter((u, index) => index < 10 * page && index >= 10 * (page - 1));
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
+            page:page,
             total: total,
+            tomoney:'23434234.98',
             users: mockUsers
           }]);
-        }, 4000);
+        }, 1000);
       });
     });
 
@@ -185,24 +206,19 @@ export default {
     //新增用户
     mock.onGet('/user/add').reply(config => {
       let {
-        name,
-        addr,
-        age,
-        birth,
-        sex
+        username,
+        password
       } = config.params;
-      _Users.push({
-        name: name,
-        addr: addr,
-        age: age,
-        birth: birth,
-        sex: sex
+      LoginUsers.push({
+        username: username,
+        password: password,
       });
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
             code: 200,
-            msg: '新增成功'
+            msg: '新增成功',
+            LoginUsers
           }]);
         }, 500);
       });

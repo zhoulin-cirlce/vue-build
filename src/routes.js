@@ -5,6 +5,8 @@ import Login from './views/Login'
 import investment from './views/reninvestment/Investment'
 import profile from './views/profile/profile'
 import Carddeatils from './views/deatilescard/deatilcard'
+import aboutMe from './views/profile/children/aboutMe'
+import infodisclosure from './views/profile/children/infodisclosure'
 //充值
 import rechar from './views/Recharge/rechargev'
 //提现
@@ -47,14 +49,24 @@ let routes = [
         path: '/rechar/:handeltype'
     },
     {
-        path:'/deatilescard/deatilcard/:cardtype',
-        name:'Carddeatils',
-        component:Carddeatils
+        path: '/deatilescard/deatilcard/:cardtype',
+        name: 'Carddeatils',
+        component: Carddeatils
     },
+
     {
-        name: 'profile',
+        path: '/profile',
         component: profile,
-        path: '/profile'
+        children: [
+            {
+                path: 'aboutMe',
+                component: aboutMe,
+            },
+            {
+                path:"infodisclosure",
+                component:infodisclosure
+            }
+        ]
     },
     {
         path: '*',

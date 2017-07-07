@@ -1,7 +1,8 @@
 <template>
     <div>
         <li v-for="(item , index) in cellList" :key="index">
-            <div class="in-item  my-item">
+        
+            <router-link :to="item.router" class="in-item  my-item">
                 <div class="in-item-info my-item bdbr-1px">
                     <div class="fl">
                         <i :class="item.iconClass +' icon iconfont'"></i>
@@ -12,8 +13,9 @@
                         <span class="profile-arrow"></span>
                     </div>
                 </div>
-            </div>
+            </router-link>
         </li>
+        
     </div>
 </template>
 
@@ -32,6 +34,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '~assets/icon/icon_style.css';
+    a{
+        width:100%;
+        height:100%
+    }
     .bdbt-1px:before {
         height: 1px;
         content: '';
